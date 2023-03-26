@@ -32,7 +32,7 @@ const HorizontalScrollBar = ({ data, setBodyPart, bodyPart }) => {
           return (
             <Box
               key={item.id || item}
-              itemid={item.id || item}
+              itemID={item.id || item}
               title={item.id || item}
               m="0 40px"
             >
