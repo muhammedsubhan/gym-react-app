@@ -1,7 +1,46 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Box } from "@mui/material";
+import { exerciseOption, fetchData, youtubeOptions } from "../utlis/fetchData";
+import Details from "../components/Details";
+import ExerciseVideos from "../components/ExerciseVideos";
+import SimilarExercises from "../components/SimilarExercises";
 const ExerciseDetail = () => {
-  return <div>ExerciseDetail</div>;
+  const [exerciseDetail, setExerciseDetail] = useState({});
+  const [exerciseVideos, setExerciseVideos] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    const fetchExercisesData = async () => {
+      const exerciseDbUrl = "https://exercisedb.p.rapidapi.com";
+      const youtubeSearchUrl =
+        "https://youtube-search-and-download.p.rapidapi.com";
+
+      // Api Calls
+      const exerciseDetailData = await fetchData(
+        `${exerciseDbUrl}/exercises/exercise/${id}`,
+        exerciseOption
+      );
+      setExerciseDetail(exerciseDetailData);
+
+      const exerciseVideosData = await fetchData(
+        `${youtubeSearchUrl}/search?q=${exerciseDetailData.name}`,
+        youtubeOptions
+      );
+      setExerciseVideos(exerciseVideosData);
+    };
+
+    fetchExercisesData();
+  }, [id]);
+
+  return (
+    <>
+      <Box>
+        <Details exerciseDetail={exerciseDetail} />
+        <ExerciseVideos exerciseVideos={exerciseVideos} />
+        <SimilarExercises />
+      </Box>
+    </>
+  );
 };
 
 export default ExerciseDetail;
