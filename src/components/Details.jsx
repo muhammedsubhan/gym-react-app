@@ -40,7 +40,7 @@ const Details = ({ exerciseDetail }) => {
         >
           <Typography variant="h3">{name}</Typography>
           <Typography variant="h6">
-            Exercises keep you strong.{name} bup is one of the best exercises to
+            Exercises keep you strong. {name} bup is one of the best exercises to
             target your {target}. It will help you improve your mood and gain
             energy
           </Typography>
