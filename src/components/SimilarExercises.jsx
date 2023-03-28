@@ -3,7 +3,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import HorizontalScrollBar from "../components/HorizontalScrollBar";
 import Loader from "../components/Loader";
 const SimilarExercises = ({ targetExercise, equipmentExercise }) => {
-  console.log(targetExercise);
+  
   return (
     <>
       <Box
